@@ -1,0 +1,41 @@
+<div *ngIf="!isSubmit" class="contact">
+    <h3>Contact Us</h3>
+    <hr>
+
+    <form [formGroup]="contactForm" (ngSubmit)="sendMsg()">
+        <div class="input">
+            <label>Name: </label>
+            <input type="text" formControlName="username">
+            <p class="err">{{showNameError()}}</p>
+        </div>
+        <div class="input">
+            <label>Message: </label>
+            <textarea formControlName="message"></textarea>
+            <p class="err">{{showMsgError()}}</p>
+        </div>
+
+        <button type="submit" [disabled]="!this.contactForm.valid">Send Message</button>
+    </form>
+
+    
+</div>
+
+<div *ngIf="isSubmit" class="showInfo">
+    <div class="row green">
+        Thank your for contacting us. We will be in touch shortly!
+      </div>
+      <hr />
+      <strong style="font-size: .8rem; margin-top: 2rem">
+        You have submitted the following message:
+      </strong>
+    
+    <div class="name_area">
+        <h3>Name: </h3>
+        <p>{{contactForm.value.username}}</p>
+    </div>
+
+    <div class="msg_area">
+        <h3>Message: </h3>
+        <p>{{contactForm.value.message}}</p>
+    </div>
+</div>
